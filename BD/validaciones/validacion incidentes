@@ -1,0 +1,85 @@
+{
+  $jsonSchema: {
+    title: 'IncidentesDB.incidentes',
+    bsonType: 'object',
+    required: [
+      'nombre',
+      'fechaIncidente',
+      'descripcion',
+      'estatus',
+      'prioridad',
+      'tipoIncidente',
+      'reportadoPor',
+      'evento'
+    ],
+    properties: {
+      nombre: {
+        bsonType: 'string',
+        description: 'El nombre del incidente es obligatorio y debe ser texto'
+      },
+      fechaIncidente: {
+        bsonType: 'date',
+        description: 'La fecha del incidente es obligatoria y debe ser tipo fecha'
+      },
+      descripcion: {
+        bsonType: 'string',
+        description: 'La descripción es obligatoria y debe ser texto'
+      },
+      estatus: {
+        'enum': [
+          'Reportado',
+          'En Atencion',
+          'Atendido',
+          'Cancelado'
+        ],
+        description: 'El estatus debe ser Reportado, En Atencion, Atendido o Cancelado'
+      },
+      prioridad: {
+        'enum': [
+          'Urgente',
+          'Normal',
+          'Baja'
+        ],
+        description: 'La prioridad debe ser Urgente, Normal o Baja'
+      },
+      tipoIncidente: {
+        bsonType: 'string',
+        description: 'El tipo de incidente es obligatorio y debe ser texto'
+      },
+      reportadoPor: {
+        bsonType: 'object',
+        required: [
+          'idUsuario',
+          'nombre'
+        ],
+        properties: {
+          idUsuario: {
+            bsonType: 'string',
+            description: 'El id del usuario que reporta es obligatorio'
+          },
+          nombreUsuario: {
+            bsonType: 'string',
+            description: 'El nombre del usuario que reporta es obligatorio'
+          }
+        }
+      },
+      evento: {
+        bsonType: 'object',
+        required: [
+          'idEvento',
+          'nombre'
+        ],
+        properties: {
+          idEvento: {
+            bsonType: 'string',
+            description: 'El id del evento es obligatorio'
+          },
+          nombre: {
+            bsonType: 'string',
+            description: 'El nombre del evento es obligatorio'
+          }
+        }
+      }
+    }
+  }
+}

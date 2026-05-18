@@ -1,0 +1,72 @@
+
+
+/*Incidentes*/
+{
+  "nombre": "Apagón",
+  "descripcion": "Se fue la luz 2",
+  "prioridad": "Urgente",
+  "tipoIncidente": "Eléctrico",
+  "reportadoPor": {
+    "idUsuario": "6a0a4a0529a9f0dd6c720bdd"
+  },
+  "evento": {
+    "idEvento": "69fb5b388a9aa3f13e3d1a59"
+  },
+  "fechaIncidente": {
+    "$date": "2026-05-17T22:35:43.562Z"
+  },
+  "estatus": "Reportado"
+}
+
+{
+  "nombre": "Prueba",
+  "descripcion": "string",
+  "prioridad": "Urgente",
+  "tipoIncidente": "string",
+  "reportadoPor": {
+    "idUsuario": "6a0a4a0529a9f0dd6c720bdd"
+  },
+  "evento": {
+    "idEvento": "69fb5b388a9aa3f13e3d1a59"
+  },
+  "fechaIncidente": {
+    "$date": "2026-05-17T21:19:29.677Z"
+  },
+  "estatus": "Atendido",
+  "atendidoPor": {
+    "idUsuario": "6a0a4a0529a9f0dd6c720bdd",
+    "nombre": "string"
+  },
+  "evidencias": [
+    {
+      "urlImagen": "string"
+    }
+  ],
+  "fechaAtencion": {
+    "$date": "2026-05-19T03:17:48.909Z"
+  }
+}
+/*Eventos*/
+
+{
+  "nombre": "Platica de Residencias 2026",
+  "fechaInicio": {
+    "$date": "2026-05-07T15:14:10.452Z"
+  },
+  "fechaFin": {
+    "$date": "2026-05-07T15:14:10.452Z"
+  },
+  "cupo": 200,
+  "descripcion": "Informar el proceso de residencias profesionales para los alumnos proximos a realizar sus residencias",
+  "tipo": "Platica",
+  "fechaRegistro": {
+    "$date": "2026-05-06T09:16:08.602Z"
+  },
+  "estatus": "Revision",
+  "participantes": 0
+}
+
+/*Usuarios*/
+{
+  "nombre": "Andrea Rebeca León"
+}

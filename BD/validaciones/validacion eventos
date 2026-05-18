@@ -1,0 +1,161 @@
+{
+  $jsonSchema: {
+    title: 'EventosDB.eventos',
+    bsonType: 'object',
+    required: [
+      'nombre',
+      'fechaRegistro',
+      'fechaInicio',
+      'fechaFin',
+      'cupo',
+      'participantes',
+      'estatus',
+      'tipo'
+    ],
+    properties: {
+      nombre: {
+        bsonType: 'string',
+        description: 'nombre must be a string'
+      },
+      fechaRegistro: {
+        bsonType: 'date',
+        description: 'fechaRegistro must be an date'
+      },
+      fechaInicio: {
+        bsonType: 'date',
+        description: 'fechaInicio must be an date'
+      },
+      fechaFin: {
+        bsonType: 'date',
+        description: 'fechaFin must be an date'
+      },
+      cupo: {
+        bsonType: 'int',
+        minimum: 1,
+        description: 'cupo must be an int'
+      },
+      participantes: {
+        bsonType: 'int',
+        minimum: 0,
+        description: 'participantes must be an int'
+      },
+      estatus: {
+        bsonType: 'string',
+        'enum': [
+          'Captura',
+          'Revision',
+          'Autorizado',
+          'Planeacion',
+          'Rechazado',
+          'Difusion',
+          'Pospuesto',
+          'Proceso',
+          'Finalizado',
+          'Cancelado'
+        ],
+        description: 'estatus must be an value in Registro,Proceso,Finalizado,Cancelado'
+      },
+      tipo: {
+        bsonType: 'string',
+        'enum': [
+          'Platica',
+          'Concurso',
+          'Curso',
+          'Conferencia',
+          'Reunion',
+          'Titulacion',
+          'Jornada Academica',
+          'Tutorias'
+        ],
+        description: 'tipo must be an value in Platica,Concurso,Curso,Conferencia,Reunion,Titulacion,Jornada Academica, Tutorias'
+      },
+      presupuesto: {
+        bsonType: 'object',
+        required: [
+          'montoEstimado',
+          'estatus',
+          'gastoReal',
+          'fechaCreacion',
+          'fechaApertura',
+          'fechaCierre'
+        ],
+        properties: {
+          montoEstimado: {
+            bsonType: 'double',
+            description: 'montoEstimado must be an double',
+            minimum: 1
+          },
+          gstoReal: {
+            bsonType: 'double',
+            description: 'gastoReal must be an double',
+            minimum: 0
+          },
+          estatus: {
+            'enum': [
+              'Elaboracion',
+              'Aprobacion',
+              'Ejecucion',
+              'Evaluacion'
+            ],
+            description: 'estatus must be an value in Elaboracion,Aprobacion,Ejecucion,Evaluacion'
+          },
+          fechaCreacion: {
+            bsonType: 'date',
+            description: 'fechaCreacion must be an date'
+          },
+          fechaApertura: {
+            bsonType: 'date',
+            description: 'fechaApertura must be an date'
+          },
+          fechaCierre: {
+            bsonType: 'date',
+            description: 'fechaCierre must be an date'
+          },
+          gastos: {
+            bsonType: 'object',
+            required: [
+              'idConcepto',
+              'montoEstimado',
+              'montoReal',
+              'fecha',
+              'estatus'
+            ],
+            properties: {
+              idConcepto: {
+                bsonType: 'objectId',
+                description: 'idConcepto must be an ObjectId reference to Conceptos'
+              },
+              montoEstimado: {
+                bsonType: 'double',
+                minimum: 1,
+                description: 'montoEstimado must be an double'
+              },
+              montoReal: {
+                bsonType: 'double',
+                minimum: 0,
+                description: 'montoEstimado must be an double'
+              },
+              fecha: {
+                bsonType: 'date',
+                description: 'fecha must be an date'
+              },
+              estatus: {
+                bsonType: 'bool',
+                description: 'estatus must be an bool'
+              },
+              evidencia: {
+                'enum': [
+                  'Factura',
+                  'Ticket',
+                  'Nota venta',
+                  'Comprobante pago'
+                ],
+                description: 'evidencia must be an value in Factura,Ticket, Nota Venta,Comprobante pago'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
