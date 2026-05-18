@@ -1,0 +1,7 @@
+{
+  _id: 0,
+  idUsuario: {
+    $toString: "$_id"
+  },
+  nombre: 1,
+}

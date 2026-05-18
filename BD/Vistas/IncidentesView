@@ -1,0 +1,14 @@
+{
+  _id: 0,
+  idIncidente: {
+    $toString: "$_id"
+  },
+  nombre: 1,
+  fechaIncidente: 1,
+  descripcion: 1,
+  estatus: 1,
+  prioridad: 1,
+  tipoIncidente: 1,
+  reportadoPor: 1,
+  evento: 1
+}

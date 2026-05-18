@@ -1,0 +1,15 @@
+{
+  idEvento: {
+    $toString: "$_id"
+  },
+  nombre: 1,
+  fechaInicio: 1,
+  fechaFin: 1,
+  cupo: 1,
+  descripcion: 1,
+  tipo: 1,
+  fechaRegistro: 1,
+  estatus: 1,
+  participantes: 1,
+  _id: 0
+}
