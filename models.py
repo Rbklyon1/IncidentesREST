@@ -1,6 +1,6 @@
 from datetime import datetime
-from typing import Any, Dict, List
-from pydantic import AliasChoices, BaseModel, ConfigDict, Field
+from typing import Any, Dict, List, Literal
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field, model_validator
 
 
 class UsuarioRef(BaseModel):
@@ -30,7 +30,7 @@ class CrearIncidente(BaseModel):
     descripcion: str = Field(
         validation_alias=AliasChoices("descripcion", "descripci\u00f3n")
     )
-    prioridad: str
+    prioridad: Literal["Urgente", "Normal", "Baja"]
     tipoIncidente: str
     reportadoPor: UsuarioRef
     evento: EventoRef
@@ -47,3 +47,27 @@ class IncidenteSalida(Salida):
 
 class IncidentesSalida(Salida):
     incidentes: List[Dict[str, Any]] | None = None
+
+class EditarIncidente(BaseModel):
+    nombre:str |None = None 
+    descripcion:str |None = None
+    prioridad: Literal["Urgente", "Normal", "Baja"] |None = None
+    tipoIncidente: str |None = None
+
+class Evidencia(BaseModel):
+    urlImagen: str
+
+
+class AtendidoPor(BaseModel):
+    idUsuario: str
+    nombre: str
+
+
+class RegistroAtencion(BaseModel):
+    estatus: Literal["En Atencion", "Atendido"]
+    fechaAtencion: datetime
+    atendidoPor: AtendidoPor
+    evidencias: list[Evidencia]
+    
+class EvidenciasSalida(Salida):
+    incidente: Dict[str, Any] | None = None
