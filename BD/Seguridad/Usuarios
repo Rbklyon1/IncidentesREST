@@ -1,0 +1,9 @@
+db.createUser({user:"juanito", pwd: "Hola.123",
+             roles:[{role: "Supervisor", db:"IncidentesDB"}]})
+
+db.createUser({user:"pepito", pwd: "Hola.123",
+             roles:[{role: "Organizador", db:"IncidentesDB"}]})
+
+db.createUser({user:"pedrito", pwd: "Hola.123",
+             roles:[{role: "Participante", db:"IncidentesDB"}]})
+             

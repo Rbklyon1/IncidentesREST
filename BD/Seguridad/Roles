@@ -1,0 +1,16 @@
+db.createRole({role:"Supervisor",
+              privileges:[{resource:{db:"IncidentesDB", collection: "incidentes"},
+                          actions: ["find", "insert", "update", "remove"]},
+                          {resource: {db: "IncidentesDB", collection:"IncidentesView"},
+                          actions: ["find"]}], roles:[]})
+db.createRole({role:"Organizador",
+              privileges:[{resource:{db:"IncidentesDB", collection: "incidentes"},
+                          actions: ["find", "insert", "update"]},
+                          {resource: {db: "IncidentesDB", collection:"IncidentesView"},
+                          actions: ["find"]}], roles:[]})
+
+db.createRole({role:"Participante",
+              privileges:[{resource:{db:"IncidentesDB", collection: "incidentes"},
+                          actions: ["find", "insert"]},
+                          {resource: {db: "IncidentesDB", collection:"IncidentesView"},
+                          actions: ["find"]}], roles:[]})
