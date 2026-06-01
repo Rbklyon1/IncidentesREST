@@ -1,11 +1,9 @@
 from datetime import datetime
-
 from bson import ObjectId
 from pymongo import MongoClient
+from models import CrearIncidente, IncidenteSalida, IncidentesSalida, Salida, EditarIncidente, RegistroAtencion, EvidenciasSalida, Usuario
 
-from models import CrearIncidente, IncidenteSalida, IncidentesSalida, Salida, EditarIncidente, RegistroAtencion, EvidenciasSalida
-
-DATABASEURL = "mongodb://localhost:27017/"
+# DATABASEURL = "mongodb://localhost:27017/"
 DATABASE = "IncidentesDB"
 EVENTOS_DATABASE = "EventosDB"
 EVENTOS_COLLECTION = "eventos"
@@ -17,9 +15,10 @@ class ConexionDB:
     _cliente = None
     _db = None
 
-    def __init__(self):
+    def __init__(self, user, password):
         try:
-            self._cliente = MongoClient(DATABASEURL)
+            self.DATABASE = f"mongodb://{user}:{password}@localhost:27017/?authSource=admin"
+            self._cliente = MongoClient(self.DATABASEURL)
             self._db = self._cliente[DATABASE]
             print(f"Conectado con la BD: {DATABASE}")
         except Exception as ex:
@@ -327,4 +326,16 @@ class IncidenteDAO:
 
         return salida       
 
-EventoDAO = IncidenteDAO
+class UsuarioDAO:
+    def __init__(self,db):
+        self.db=db
+        self.col=self.db.usuarios
+        self.view=self.db.UsuariosView
+    def autenticar(self,username,password):
+        result=self.view.find_one({"username":username,"password":password,"estatus":True})
+        if result:
+            usuario=Usuario(**result)
+            return usuario
+        else:
+            return None
+

@@ -71,3 +71,17 @@ class RegistroAtencion(BaseModel):
     
 class EvidenciasSalida(Salida):
     incidente: Dict[str, Any] | None = None
+    
+class Usuario(BaseModel):
+    idUsuario:str
+    nombre:str
+    telefono:str
+    username:str
+    email:str
+    genero:str
+    password:str
+    tipo:str
+    estatus:str
+    rol:str
+    fechaRegistro:datetime
+    
