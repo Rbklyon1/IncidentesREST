@@ -338,4 +338,3 @@ class UsuarioDAO:
             return usuario
         else:
             return None
-
