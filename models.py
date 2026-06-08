@@ -75,13 +75,8 @@ class EvidenciasSalida(Salida):
 class Usuario(BaseModel):
     idUsuario:str
     nombre:str
-    telefono:str
     username:str
-    email:str
-    genero:str
     password:str
-    tipo:str
-    estatus:str
+    estatus:bool
     rol:str
-    fechaRegistro:datetime
     

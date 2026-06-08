@@ -7,7 +7,6 @@ from models import CrearIncidente, IncidenteSalida, IncidentesSalida, Salida, Ed
 DATABASE = "IncidentesDB"
 EVENTOS_DATABASE = "EventosDB"
 EVENTOS_COLLECTION = "eventos"
-USUARIOS_DATABASE = "UsuariosDB"
 USUARIOS_COLLECTION = "usuarios"
 
 
@@ -17,7 +16,7 @@ class ConexionDB:
 
     def __init__(self, user, password):
         try:
-            self.DATABASE = f"mongodb://{user}:{password}@localhost:27017/?authSource=admin"
+            self.DATABASEURL = f"mongodb://{user}:{password}@localhost:27017/?authSource=IncidentesDB"
             self._cliente = MongoClient(self.DATABASEURL)
             self._db = self._cliente[DATABASE]
             print(f"Conectado con la BD: {DATABASE}")
@@ -44,8 +43,7 @@ class IncidenteDAO:
         self.view = self.db.IncidentesView
         self.eventos = self.db.client[EVENTOS_DATABASE][EVENTOS_COLLECTION]
         self.eventos_view = self.db.client[EVENTOS_DATABASE].eventosView
-        self.usuarios = self.db.client[USUARIOS_DATABASE].UsuariosView
-
+        self.usuarios =  self.db.client[DATABASE].usuariosView
 
     def _crear_filtro_id(self, campo_id: str, valor_id: str):
         filtros = [{campo_id: valor_id}]
@@ -330,9 +328,11 @@ class UsuarioDAO:
     def __init__(self,db):
         self.db=db
         self.col=self.db.usuarios
-        self.view=self.db.UsuariosView
+        self.view=self.db.usuariosView
     def autenticar(self,username,password):
         result=self.view.find_one({"username":username,"password":password,"estatus":True})
+        print("RESULTADO:", result)
+
         if result:
             usuario=Usuario(**result)
             return usuario
